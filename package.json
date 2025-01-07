@@ -1,0 +1,17 @@
+{
+    "name": "nilgiriDemoRepo",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/your-username/your-repo-name.git"
+    },
+    "scripts": {
+      "test": "echo 'Run tests here'",
+      "build": "echo 'Build your package here'"
+    },
+    "publishConfig": {
+      "registry": "https://registry.npmjs.org/"
+    }
+  }
+  
