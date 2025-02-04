@@ -154,8 +154,27 @@ class FeroxbusterModule {
     }
 
     async analyzeWithOpenAI(scanData: any): Promise<string> {
-        const systemPrompt = 'You are a security expert analyzing scan results and providing actionable insights.';
-        const userPrompt = `Please analyze these security scan results and provide insights:
+        const systemPrompt = 'You are a security expert specializing in analyzing vulnerability scan reports and generating human-readable summaries. Focus on identifying the most relevant findings, categorizing them by severity, and highlighting critical security risks. The output should be in an HTML report format that is visually structured and easy to understand, with sections like Summary, Key Findings, Detailed Results, and Recommendations.';
+        const userPrompt = `Please analyze the following Feroxbuster scan results and generate a meaningful HTML report. Include the following sections:
+
+                            Scan Summary:
+
+                            Total number of requests
+                            Distribution of status codes (200, 403, 404, etc.)
+                            Common content types found
+                            Key Findings:
+
+                            Notable URLs with status codes like 200 (successful requests) and 403 (forbidden)
+                            Potential sensitive files or directories discovered (e.g., admin panels, backup files)
+                            Duplicate or common patterns in the results
+                            Detailed Results:
+
+                            A table listing discovered URLs with their status codes, content length, and content type.
+                            Recommendations:
+
+                            Suggestions for improving security based on the findings.
+                            Example Input: Feroxbuster scan results in JSON format.
+                            Example Output: Clean, organized HTML report with meaningful insights and actionable recommendations.
             Total Requests: ${scanData.totalRequests}
             Status Code Distribution: ${JSON.stringify(scanData.statusCodes)}
             Notable Findings: ${scanData.findings.length > 0 ? JSON.stringify(scanData.findings.slice(0, 5)) : 'None'}`;
